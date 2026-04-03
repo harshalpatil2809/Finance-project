@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'finance_api',
+    'drf_spectacular',
 ]
 
 REST_FRAMEWORK = {
@@ -48,6 +49,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Finance System API',
+    'DESCRIPTION': 'Backend for managing financial records and analytics',
+    'VERSION': '1.0.0',
+
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
+
+    'SERVERS': [
+        {'url': 'http://127.0.0.1:8000', 'description': 'Local Development'},
+        {'url': 'https://your-api.example.com', 'description': 'Production'},
+    ],
 }
 
 from datetime import timedelta
